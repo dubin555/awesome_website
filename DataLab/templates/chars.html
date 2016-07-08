@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>赶集网二手商品行情 </h1>
+    <div class="container-fluid">
+        <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                   地区
+                   <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                   <li id="CP">昌平</li>
+                   <li id="CY">朝阳</li>
+                   <li id="HD">海淀</li>
+                </ul>
+        </li>
+        <div id="chart1"></div>
+    </div>
+    <hr>
+<!-------------------second chart----------------------->
+    <div class="container-fluid">
+        <div id="chart2"></div>
+    </div>
+
+<!-----------------script 昌平----------------------->
+    <script>
+    $('#CP').click(function () {
+        $('#chart1').highcharts({
+            chart: {
+                type: 'column',
+                margin: 75,
+                options3d: {
+                    enabled: true,
+                    alpha: 10,
+                    beta: 25,
+                    depth: 70
+                }
+            },
+            title: {
+                text: '二手交易发帖量前三名'
+            },
+            subtitle: {
+                text: '昌平区发帖前三名柱状图'
+            },
+            plotOptions: {
+                column: {
+                    depth: 25
+                }
+            },
+
+            yAxis: {
+                opposite: true,
+                title: {
+                    text: 'TOP 3'
+                }
+            },
+            series: {{ chart_CP|safe }}
+        });
+    });
+    </script>
+
+<!----------------朝阳-------->
+    <script>
+    $('#CY').click(function () {
+        $('#chart1').highcharts({
+            chart: {
+                type: 'column',
+                margin: 75,
+                options3d: {
+                    enabled: true,
+                    alpha: 10,
+                    beta: 25,
+                    depth: 70
+                }
+            },
+            title: {
+                text: '二手交易发帖量前三名'
+            },
+            subtitle: {
+                text: '朝阳区发帖前三名柱状图'
+            },
+            plotOptions: {
+                column: {
+                    depth: 25
+                }
+            },
+
+            yAxis: {
+                opposite: true,
+                title: {
+                    text: 'TOP 3'
+                }
+            },
+            series: {{ chart_CY|safe }}
+        });
+    });
+    </script>
+<!------海淀-------->
+    <script>
+    $('#HD').click(function () {
+        $('#chart1').highcharts({
+            chart: {
+                type: 'column',
+                margin: 75,
+                options3d: {
+                    enabled: true,
+                    alpha: 10,
+                    beta: 25,
+                    depth: 70
+                }
+            },
+            title: {
+                text: '二手交易发帖量前三名'
+            },
+            subtitle: {
+                text: '海淀区发帖前三名柱状图'
+            },
+            plotOptions: {
+                column: {
+                    depth: 25
+                }
+            },
+
+            yAxis: {
+                opposite: true,
+                title: {
+                    text: 'TOP 3'
+                }
+            },
+            series: {{ chart_HD|safe }}
+        });
+    });
+    </script>
+<!------------- 各类别发帖量 ------------->
+    <script>
+        $(function () {
+        $('#chart2').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '赶集网二手商品各类别发帖量, 2016.06'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'share',
+                data: {{ chart_post|safe }}
+            }]
+        });
+    });
+    </script>
+
+{% endblock %}

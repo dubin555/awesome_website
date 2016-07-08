@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+{% if items %}
+    {% for item in items %}
+        <div class="highlight_text ">
+            <strong>{{ item.title }}</strong>
+            <ul class="list-inline">
+                <li><small>{{ item.publish_time }}</small></li>
+                <li><small>{{ item.area }}</small></li>
+                <li><small>{{ item.type }}</small></li>
+            </ul>
+        </div>
+        <hr>
+    {% endfor %}
+{% else %}
+    <strong><h2>没有可显示的商品明细</h2></strong>
+{% endif %}
+    <ul class="pager">
+        {% if items.has_previous %}
+            <li><a href="?page={{ items.previous_page_number }}">Previous</a></li>
+        {% endif %}
+
+        <li class="disabled item">{{ items.number }} of {{ items.paginator.num_pages }}</li>
+
+        {% if items.has_next %}
+            <li><a href="?page={{ items.next_page_number }}">Next</a></li>
+        {% endif %}
+    </ul>
+
+{% endblock %}
