@@ -2,6 +2,7 @@
 {% block content %}
     <h1>赶集网二手商品行情 </h1>
     <div class="container-fluid">
+    <!---
         <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                    地区
@@ -13,6 +14,20 @@
                    <li id="HD">海淀</li>
                 </ul>
         </li>
+
+-->
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <strong>地区</strong>
+            <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#" id="CP">昌平</a></li>
+                <li><a href="#" id="CY">朝阳</a></li>
+                <li><a href="#" id="HD">海淀</a></li>
+            </ul>
+        </div>
+
         <div id="chart1"></div>
     </div>
     <hr>
