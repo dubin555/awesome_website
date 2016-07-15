@@ -7,7 +7,7 @@ import requests
 import re
 import time
 from USER_AGENT import headers, proxy_list
-from multiprocessing import Pool
+from multiprocessing.pool import ThreadPool as Pool
 from functools import partial
 import pymongo
 import random
@@ -62,7 +62,7 @@ def _get_detail_url_from(channel, i):
     '''
     i = i
     while i < 100:
-        time.sleep(5)
+        time.sleep(1)
         target_url = channel + "o{}".format(i)
         print("***** looking for url ---", target_url)
         try:
@@ -93,9 +93,9 @@ def extract_detail_url_from_channels():
     Use multiprocess Pool to accelerate it.
     '''
     channels = _get_ganji_channel()
-    pool = Pool()
+    pool = Pool(10)
     # get all the detail url start from 1
-    pool.map(partial(_get_detail_url_from, i = 1), channels)
+    pool.map(partial(_get_detail_url_from, i=1), channels)
     pool.close()
     pool.join()
     return
