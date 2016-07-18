@@ -41,3 +41,22 @@ proxy_list = [
             'http://202.100.167.149:80',
             'http://202.100.167.137:80',
             ]
+
+
+def config_logger_from(logger_name):
+    """logging setting for channel_extract.py
+    return None
+    """
+    import logging
+    import os
+    from datetime import datetime
+    LOG_FILENAME_PATH = "logs"
+    if not isinstance(logger_name, str):
+        raise NameError("Please use a string to name the log file")
+    LOG_FILENAME = logger_name.upper() \
+                   + " " \
+                   + str(datetime.now()) \
+                   + ".log"
+    LOG_FULL_FILENAME = os.path.join(LOG_FILENAME_PATH, LOG_FILENAME).replace(" ", "_")
+    logging.basicConfig(filename=LOG_FULL_FILENAME, level=logging.INFO)
+
