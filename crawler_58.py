@@ -45,4 +45,4 @@ if __name__ == "__main__":
     url_enterence = "http://bj.58.com/pbdn/0/"
     urls =  get_item_urls(url_enterence)
     for url in urls:
-        print get_item_info(url)
+        print (get_item_info(url))
